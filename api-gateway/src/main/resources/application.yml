@@ -1,0 +1,65 @@
+# Default Spring Profile
+server:
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    com.watchstore: DEBUG
+
+
+---
+# for test
+spring:
+  config:
+    activate:
+      on-profile: test
+
+
+
+app:
+  employees-service:
+    host: localhost
+    port: 7001
+  inventory-service:
+    host: localhost
+    port: 7002
+  stores-service:
+    host: localhost
+    port: 7003
+  sales-service:
+    host: localhost
+    port: 7004
+
+---
+
+
+
+# for docker
+
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+
+
+server.port: 8080
+
+#spring.datasource.hikari.initializationFailTimeout: 60000
+
+app:
+  employees-service:
+    host: employees-service
+    port: 8080
+  inventory-service:
+    host: inventory-service
+    port: 8080
+  stores-service:
+    host: stores-service
+    port: 8080
+  sales-service:
+    host: sales-service
+    port: 8080
+

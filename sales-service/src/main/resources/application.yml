@@ -1,0 +1,84 @@
+# Default Spring Profile
+server:
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    com.watchstore: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+---
+# for test
+spring:
+  config:
+    activate:
+      on-profile: test
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 5.0.5
+
+  data:
+    mongodb:
+      username: user
+      password: pwd
+      host: localhost
+      database: sales-db
+      port: 0        #27017
+      authentication-database: admin
+      auto-index-creation: true
+
+
+
+app:
+  employees-service:
+    host: localhost
+    port: 7001
+  inventory-service:
+    host: localhost
+    port: 7002
+  stores-service:
+    host: localhost
+    port: 7003
+
+---
+
+
+
+# for docker
+
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+  data:
+    mongodb:
+      username: user
+      password: pwd
+      database: sales-db
+      host: mongodb
+      port: 27017
+      authentication-database: admin
+      auto-index-creation: true
+
+server.port: 8080
+
+#spring.datasource.hikari.initializationFailTimeout: 60000
+
+app:
+  employees-service:
+    host: employees-service
+    port: 8080
+  inventory-service:
+    host: inventory-service
+    port: 8080
+  stores-service:
+    host: stores-service
+    port: 8080
+
+

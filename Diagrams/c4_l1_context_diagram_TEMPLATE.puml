@@ -1,0 +1,18 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+
+title System Context Diagram for Car Watch Store System
+
+Person(employee, "Employee", "Employee of the watch store")
+Person(store, "Store", "The actual store or location")
+Person(inventory, "Inventory", "The actual place where all the watches available are")
+System(watch_store, "Watch Store System", "Allows employees to manage the watch inventory")
+
+Rel(employee, watch_store, "Tracks inventory and story purchase location", "Uses")
+Rel(store, watch_store, "Location or place where find the watches", "Uses")
+Rel(inventory, watch_store, "Location where all the watches are", "Uses")
+
+
+
+'SHOW_LEGEND()
+@enduml

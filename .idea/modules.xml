@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/watchstore-ms.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/watchstore-ms.api-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/watchstore-ms.api-gateway.test.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/watchstore-ms.api-gateway.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/employees-service/watchstore-ms.employees-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/employees-service/watchstore-ms.employees-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/employees-service/watchstore-ms.employees-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/employees-service/watchstore-ms.employees-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/inventory-service/watchstore-ms.inventory-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/inventory-service/watchstore-ms.inventory-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/inventory-service/watchstore-ms.inventory-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/inventory-service/watchstore-ms.inventory-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sales-service/watchstore-ms.sales-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sales-service/watchstore-ms.sales-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sales-service/watchstore-ms.sales-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sales-service/watchstore-ms.sales-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stores-service/watchstore-ms.stores-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stores-service/watchstore-ms.stores-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stores-service/watchstore-ms.stores-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/stores-service/watchstore-ms.stores-service.test.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,217 @@
+@startuml
+hide circle
+top to bottom direction
+
+!define ENTITY(entityName) class entityName << Entity >>
+!define AGGREGATE(aggregateName) class aggregateName << Aggregate >>
+!define AGGREGATE_ROOT(aggregateRootName) class aggregateRootName << Aggregate Root >>
+!define AGGREGATE_ROOT_ENTITY(aggregateRootEntityName) class aggregateRootEntityName << Aggregate Root >> << Entity >>
+!define VALUE_OBJECT(valueObjectName) class valueObjectName << Value Object >>
+!pragma useVerticalIf on
+skinparam dpi 350
+skinparam packageStyle rectangle
+skinparam rectangle {
+    BackgroundColor #f7f4eb
+    BorderColor Black
+}
+
+rectangle "Watch Store" as BoundedContextCarDealership #line.dashed {
+
+ Package "Store Sub-Domain" <<Rectangle>> #Lavender {
+
+        ENTITY(Store) #lightblue {
+            name:String
+            phoneNumber:String
+        }
+
+        VALUE_OBJECT(StoreIdentifier) #Bisque{
+           storeId: String
+        }
+
+
+
+        VALUE_OBJECT(Address) #Bisque{
+           Street: String
+           city: String
+           province: Price
+           country:String
+           postalCode:String
+        }
+
+        Store o--> "1" Address
+        Store o--> "1" StoreIdentifier
+
+
+
+    }
+
+Package "Employee Sub-Domain" <<Rectangle>> #3399FF{
+            ENTITY(Employee) #lightblue{
+                firstName: String
+                lastName: String
+                email: String
+                jobTitle:String
+                phoneNumber:String
+
+            }
+            VALUE_OBJECT(EmployeeIdentifier) #Bisque{
+                employeeId: UUID
+            }
+            VALUE_OBJECT(EmployeeAddress) #Bisque{
+                    street: String
+                    city: String
+                    province: String
+                    country: String
+                    postalCode:String
+            }
+            VALUE_OBJECT(EmployeePhoneNumber) #Bisque {
+                type: String
+                number: String
+            }
+
+           Employee o--> "1" EmployeeIdentifier
+           Employee o--> "1" EmployeePhoneNumber
+           Employee o--> "1" EmployeeAddress
+
+    }
+
+Package "Sales Sub-domain" <<Rectangle>> #FFCDD2{
+
+note "Invariant: when a sale is completed (when a watch is sold), it is going to be removed from the sales list. When a watch is sold, the status of it will be set as 'sold' " as purchaseInvariant
+        AGGREGATE_ROOT_ENTITY(Sales) #lightpink{
+            price:Double
+            Data:String
+        }
+        VALUE_OBJECT(SaleIdentifier) #Bisque{
+            salesId: UUID
+        }
+
+
+
+    Sales o--> "1" SaleIdentifier
+
+    }
+
+    Package "Inventory Sub-Domain" <<Rectangle>> #FFCDD2{
+            AGGREGATE_ROOT_ENTITY(Inventory) #lightpink{
+                type: String
+
+            }
+            VALUE_OBJECT(inventoryIdentifier) #Bisque{
+                inventoryId: UUID
+            }
+            VALUE_OBJECT(watchIdentifier) #Bisque{
+                referenceNumber:UUID
+
+            }
+
+            VALUE_OBJECT(Features) #Bisque {
+               bracelet:String
+               diameter: Integer
+               batteryType:String
+               price:Double
+
+            }
+
+    ENTITY(Watch) #lightpink{
+                brand:String
+                model:String
+                color:String
+                year:Integer
+                status: status
+
+            }
+
+        Inventory o--> "1" inventoryIdentifier
+        Watch o--> "1" watchIdentifier
+        Watch o--> "1" Features
+
+
+
+
+
+        }
+
+Package "Customer Sub-Domain" <<Rectangle>> #LightSalmon {
+
+      AGGREGATE_ROOT(Customer) #lightblue {
+        firstName:String
+        lastName:String
+        email:String
+        age:Integer
+        email:String
+        phoneNumber:String
+        Address: address
+      }
+
+      VALUE_OBJECT(customerIdentifier) #Bisque {
+        customerId: UUID
+      }
+
+      VALUE_OBJECT(address) #Bisque {
+        street:String
+        city:String
+        province:String
+        country:String
+        postalCode:String
+      }
+
+        Customer o--> "1" customerIdentifier
+        Customer o--> "1" address
+
+   }
+
+Package "After Sales Service Sub-Domain" <<Rectangle>> #LightSalmon {
+
+      AGGREGATE_ROOT(ServiceRequest) #lightblue {
+        start: DateTime
+        end: DateTime
+        priority: String
+        isWarrantyRepair: Boolean
+        status: String
+      }
+
+      VALUE_OBJECT(ServiceRequestIdentifier) #Bisque {
+        requestId: UUID
+      }
+
+      VALUE_OBJECT(PartReplaced) #Bisque {
+        description: String
+        quantity: Integer
+        manufacturer: String
+        cost: Price
+      }
+
+      VALUE_OBJECT(TotalCost) #Bisque {
+        currency: String
+        value: Decimal
+      }
+
+       ServiceRequest o--> "1" PartReplaced
+       ServiceRequest o--> "1" ServiceRequestIdentifier
+       ServiceRequest o--> "1" TotalCost
+       EmployeeIdentifier o--> "1" Sales
+       inventoryIdentifier o--> "1" Sales
+       watchIdentifier o--> "1" Sales
+       StoreIdentifier o--> "1" Sales
+       StoreIdentifier o--> "1" EmployeeIdentifier
+       watchIdentifier o--> "1" Store
+       customerIdentifier o--> "1" Sales
+       ServiceRequestIdentifier o--> "1" Store
+
+
+
+
+
+
+
+
+
+
+
+
+
+   }
+
+
+ @enduml

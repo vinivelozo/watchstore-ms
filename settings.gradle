@@ -1,0 +1,5 @@
+include 'api-gateway'
+include 'employees-service'
+include 'inventory-service'
+include 'sales-service'
+include 'stores-service'
